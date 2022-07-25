@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\ItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,7 +14,12 @@ use App\Http\Controllers\PostController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::apiResource('/posts', PostController::class);
+
+Route::get('items', [ItemController::class , 'show_api']);
+Route::post('add_item' , [ItemController::class , 'add_item']);
+Route::post('update_item/{id}' , [ItemController::class , 'update_item']);
+Route::post('delete_item/{id}' , [ItemController::class , 'delete_item']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
